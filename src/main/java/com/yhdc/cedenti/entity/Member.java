@@ -45,7 +45,7 @@ public class Member {
 	@Column(length = 20, nullable = false)
 	private String authority;
 	@Column(length = 20, nullable = false)
-	private String active;
+	private boolean active;
 
 	@CreationTimestamp
 	private LocalDateTime created;
