@@ -17,7 +17,6 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 import lombok.ToString;
 
 @Entity
@@ -25,13 +24,12 @@ import lombok.ToString;
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
-@Setter
 @ToString(exclude = "writer")
 public class Board {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long board_id;
-	
+
 	@Column(length = 20, nullable = false)
 	private String title;
 	@Column(nullable = false)
@@ -41,9 +39,18 @@ public class Board {
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	private Member writer;
-	
+
 	@CreationTimestamp
 	private LocalDateTime created;
 	@UpdateTimestamp
 	private LocalDateTime updated;
+
+	public void changeTitle(String title) {
+		this.title = title;
+	}
+
+	public void changeBody(String body) {
+		this.body = body;
+	}
+
 }
