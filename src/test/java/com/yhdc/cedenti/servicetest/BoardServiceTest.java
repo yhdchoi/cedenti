@@ -31,14 +31,14 @@ public class BoardServiceTest {
 //		}
 //	}
 //
-//	@Test
-//	public void testGet() {
-//		Long board_id = 41L;
-//
-//		BoardDTO boardDTO = boardService.get(board_id);
-//
-//		System.out.println(boardDTO);
-//	}
+	@Test
+	public void testGet() {
+		Long board_id = 41L;
+
+		BoardDTO boardDTO = boardService.get(board_id);
+
+		System.out.println(boardDTO);
+	}
 //
 //	@Test
 //	public void testRemove() {
@@ -46,11 +46,11 @@ public class BoardServiceTest {
 //
 //		boardService.removeWithReplies(board_id);
 //	}
-	
-	@Test
-	public void testModify() {
-		BoardDTO boardDTO = BoardDTO.builder().board_id(2L).title("New Title").body("New Body").build();
-		
-		boardService.modify(boardDTO);
-	}
+//	
+//	@Test
+//	public void testModify() {
+//		BoardDTO boardDTO = BoardDTO.builder().board_id(2L).title("New Title").body("New Body").build();
+//		
+//		boardService.modify(boardDTO);
+//	}
 }
