@@ -30,6 +30,7 @@ public class BoardController {
 		model.addAttribute("result", boardService.getList(pageRequestDTO));
 	}
 	
+	
 //	@GetMapping("/register")
 //	public void register() {
 //		log.info("register get...");
@@ -49,8 +50,10 @@ public class BoardController {
 		return "redirect:/board/list";
 	}
 	
+	
 	@GetMapping("/read")
 	public void read(@ModelAttribute("requestDTO") PageRequestDTO pageRequestDTO, Long board_id, Model model) {
+		
 		log.info("board_id : " +board_id);
 		
 		BoardDTO boardDTO = boardService.get(board_id);
@@ -59,6 +62,7 @@ public class BoardController {
 		
 		model.addAttribute("dto", boardDTO);
 	}
+	
 	
 	
 }
