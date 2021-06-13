@@ -4,7 +4,7 @@
 <header class="container py-4" th:fragment="header">
   <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
     <div class="container-fluid">
-      <a class="navbar-brand" href="#">Cedenti</a>
+      <a class="navbar-brand" th:href="@{/}">Cedenti</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
         data-bs-target="#navbarCollapse" aria-controls="navbarCollapse"
         aria-expanded="false" aria-label="Toggle navigation">
@@ -16,16 +16,16 @@
             <a class="nav-link" aria-current="page" th:href="@{/}">Home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">About</a>
+            <a class="nav-link" th:href="@{/about}">About</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" th:href="@{/board/browse}">Browse</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Updates</a>
+            <a class="nav-link" th:href="@{/updates}">Updates</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Contact</a>
+            <a class="nav-link" th:href="@{/contact}">Contact</a>
           </li>
         </ul>
 
@@ -48,13 +48,13 @@
             class="dropdown-menu dropdown-menu-end dropdown-menu-dark text-small shadow"
             aria-labelledby="dropdownUser">
             <li>
-              <a class="dropdown-item" href="#">Profile</a>
+              <a class="dropdown-item" th:href="@{/user/profile}">Profile</a>
             </li>
             <li>
-              <a class="dropdown-item" href="#">Dashboard</a>
+              <a class="dropdown-item" th:href="@{/user/dashboard}">Dashboard</a>
             </li>
             <li>
-              <a class="dropdown-item" href="#">Settings</a>
+              <a class="dropdown-item" th:href="@{/user/settings}">Settings</a>
             </li>
             <li>
               <hr class="dropdown-divider">

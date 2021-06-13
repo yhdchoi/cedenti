@@ -6,7 +6,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<title>Board</title>
+<title>Profile</title>
 
 <!-- Bootstrap CSS -->
 <link
@@ -25,47 +25,139 @@
 	
 </script>
 
-    <style>
-      .bd-placeholder-img {
-        font-size: 1.125rem;
-        text-anchor: middle;
-        -webkit-user-select: none;
-        -moz-user-select: none;
-        user-select: none;
-      }
+<style>
+.bd-placeholder-img {
+	font-size: 1.125rem;
+	text-anchor: middle;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	user-select: none;
+}
 
-      @media (min-width: 768px) {
-        .bd-placeholder-img-lg {
-          font-size: 3.5rem;
-        }
-      }
-    </style>
+@media ( min-width : 768px) {
+	.bd-placeholder-img-lg {
+		font-size: 3.5rem;
+	}
+}
+</style>
 </head>
 
 <body>
   <div th:replace="common/header :: header"></div>
 
   <main>
-    <div class="container marketing">
-    
-      <div class="row">
-        <div class="col-lg-4"><svg
-            class="bd-placeholder-img rounded-circle" width="140" height="140"
-            xmlns="http://www.w3.org/2000/svg" role="img"
+    <div class="container py-5 ">
+
+      <div class="row d-flex justify-content-center">
+        <div class="col-lg-4">
+          <svg class="bd-placeholder-img rounded-circle mx-auto d-block" width="140"
+            height="140" xmlns="http://www.w3.org/2000/svg" role="img"
             aria-label="Placeholder: 140x140"
             preserveAspectRatio="xMidYMid slice" focusable="false">
             <title>Placeholder</title><rect width="100%" height="100%"
               fill="#777" />
             <text x="50%" y="50%" fill="#777" dy=".3em">140x140</text></svg>
 
-          <h2>Heading</h2>
-          <p>Some representative placeholder content for the three columns
-            of text below the carousel. This is the first column.</p>
-          <p>
-            <a class="btn btn-secondary" href="#">View details &raquo;</a>
-          </p>
-         </div>
-    </div>
+          <form class="needs-validation py-4 align-items-center" novalidate>
+
+            <div class="row g-3">
+              <div class="col-sm-6">
+                <label for="firstName" class="form-label">First name</label>
+                <input type="text" class="form-control" id="firstName"
+                  placeholder="" value="" required>
+                <div class="invalid-feedback">Valid first name is
+                  required.</div>
+              </div>
+
+              <div class="col-sm-6">
+                <label for="lastName" class="form-label">Last name</label>
+                <input type="text" class="form-control" id="lastName"
+                  placeholder="" value="" required>
+                <div class="invalid-feedback">Valid last name is required.
+                </div>
+              </div>
+
+              <div class="col-12">
+                <label for="username" class="form-label">Username</label>
+                <div class="input-group has-validation">
+                  <span class="input-group-text">@</span>
+                  <input type="text" class="form-control" id="username"
+                    placeholder="Username" required>
+                  <div class="invalid-feedback">Your username is required.
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-12">
+                <label for="email" class="form-label">
+                  Email
+                </label>
+                <input type="email" class="form-control" id="email"
+                  placeholder="you@example.com">
+                <div class="invalid-feedback">Please enter a valid email
+                  address for shipping updates.</div>
+              </div>
+              
+               <div class="col-12">
+                <label for="phone" class="form-label">
+                  Phone
+                </label>
+                <input type="text" class="form-control" id="phone" placeholder="+17775559999">
+                <div class="invalid-feedback">Please enter a valid phone number.</div>
+              </div>
+
+              <div class="col-12">
+                <label for="address" class="form-label">Address</label>
+                <input type="text" class="form-control" id="address"
+                  placeholder="1234 Main St" required>
+                <div class="invalid-feedback">Please enter your shipping
+                  address.</div>
+              </div>
+
+              <div class="col-12">
+                <label for="address2" class="form-label">
+                  Address 2
+                  <span class="text-muted">(Optional)</span>
+                </label>
+                <input type="text" class="form-control" id="address2"
+                  placeholder="Apartment or suite">
+              </div>
+
+              <div class="col-md-5">
+                <label for="country" class="form-label">Country</label>
+                <select class="form-select" id="country" required>
+                  <option value="">Choose...</option>
+                  <option>United States</option>
+                </select>
+                <div class="invalid-feedback">Please select a valid
+                  country.</div>
+              </div>
+
+              <div class="col-md-4">
+                <label for="state" class="form-label">State</label>
+                <select class="form-select" id="state" required>
+                  <option value="">Choose...</option>
+                  <option>California</option>
+                </select>
+                <div class="invalid-feedback">Please provide a valid
+                  state.</div>
+              </div>
+
+              <div class="col-md-3">
+                <label for="zip" class="form-label">Zip</label>
+                <input type="text" class="form-control" id="zip" placeholder=""
+                  required>
+                <div class="invalid-feedback">Zip code required.</div>
+              </div>
+            </div>
+
+            <hr class="my-4">
+
+            <a class="btn btn-secondary" href="#">Save Updates &raquo;</a>
+
+          </form>
+        </div>
+      </div>
     </div>
   </main>
 

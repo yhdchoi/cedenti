@@ -6,7 +6,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<title>Board</title>
+<title>Dashboard</title>
 
 <!-- Bootstrap CSS -->
 <link
@@ -29,7 +29,7 @@
 <body>
   <div th:replace="common/header :: header"></div>
 
-  <div class="nav-scroller bg-body shadow-sm">
+ <!--  <div class="nav-scroller bg-body shadow-sm">
     <nav class="nav nav-underline" aria-label="Secondary navigation">
       <a class="nav-link active" aria-current="page" href="#">Dashboard</a>
       
@@ -39,15 +39,15 @@
       
       <a class="nav-link" href="#">Friends</a> 
       
-      <a class="nav-link" href="#">Updates</a>
-
     </nav>
-  </div>
+  </div> -->
 
 
   <main class="container">
     <div class="my-3 p-3 bg-body rounded shadow-sm">
-      <h6 class="border-bottom pb-2 mb-0">Messages</h6>
+      <h6 class="border-bottom pb-2 mb-0">Messages
+      <span class="badge bg-light text-dark rounded-pill align-text-bottom">27</span>
+      </h6>
       
       <div class="d-flex text-muted pt-3"><svg
           class="bd-placeholder-img flex-shrink-0 me-2 rounded" width="32"
@@ -97,7 +97,7 @@
     </div>
 
     <div class="my-3 p-3 bg-body rounded shadow-sm">
-      <h6 class="border-bottom pb-2 mb-0">Freinds</h6>
+      <h6 class="border-bottom pb-2 mb-0">Friends</h6>
       <div class="d-flex text-muted pt-3"><svg
           class="bd-placeholder-img flex-shrink-0 me-2 rounded" width="32"
           height="32" xmlns="http://www.w3.org/2000/svg" role="img"
