@@ -18,6 +18,11 @@ public class IndexController {
 		return "about";
 	}
 	
+	@GetMapping("/board/browse")
+	public String browse() {
+		return "board/browse";
+	}
+
 	@GetMapping("/updates")
 	public String updates() {
 		return "updates";
@@ -27,12 +32,22 @@ public class IndexController {
 	public String contact() {
 		return "contact";
 	}
-
-	@GetMapping("/board/browse")
-	public String browse() {
-		return "board/browse";
+	
+	@GetMapping("/common/book")
+	public String book() {
+		return "common/book";
 	}
 
+	@GetMapping("/security/login")
+	public String login() {
+		return "security/login";
+	}
+	
+	@GetMapping("/security/signup")
+	public String signup() {
+		return "security/signup";
+	}
+	
 	@GetMapping("/user/dashboard")
 	public String dashboard() {
 		return "user/dashboard";

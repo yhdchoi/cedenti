@@ -31,15 +31,22 @@ public class Member {
 	private Long member_id;
 
 	@Column(length = 20, nullable = false)
-	private String username;
-	@Column(length = 20, nullable = false)
 	private String password;
 	@Column(length = 20, nullable = false)
 	private String email;
+	
+	@Column(length = 20, nullable = false)
+	private String username;
+	@Column(length = 20, nullable = false)
+	private String lastname;
+	@Column(length = 20, nullable = false)
+	private String firstname;
+	
 	@Column(length = 20, nullable = false)
 	private String phone;
 	@Column(length = 100, nullable = false)
 	private String address;
+	
 	@Column(length = 20, nullable = false)
 	private String role;
 	@Column(length = 20, nullable = false)

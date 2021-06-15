@@ -64,5 +64,11 @@ public class BoardController {
 	}
 	
 	
+	@GetMapping("/search")
+	public void search(String keyword) {
+				
+		
+	}
+	
 	
 }
