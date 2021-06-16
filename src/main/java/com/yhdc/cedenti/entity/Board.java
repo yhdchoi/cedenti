@@ -30,11 +30,11 @@ public class Board {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long board_id;
 
-	@Column(length = 20, nullable = false)
+	@Column(length = 50, nullable = false)
 	private String title;
-	@Column(nullable = false)
+	@Column(columnDefinition = "text", nullable = false)
 	private String body;
-	@Column(length = 20, nullable = false)
+	@Column(length = 10, nullable = false)
 	private String board_privacy;
 
 	@ManyToOne(fetch = FetchType.LAZY)

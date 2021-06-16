@@ -26,7 +26,7 @@ import lombok.ToString;
 public class Member {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(updatable = false)
 	private Long member_id;
 
@@ -44,13 +44,16 @@ public class Member {
 	
 	@Column(length = 20, nullable = false)
 	private String phone;
-	@Column(length = 100, nullable = false)
+	@Column(columnDefinition = "text", nullable = false)
 	private String address;
 	
-	@Column(length = 20, nullable = false)
+	// member or sitter
+	@Column(length = 10, nullable = false)
 	private String role;
+	// admin or manager or user
 	@Column(length = 20, nullable = false)
 	private String authority;
+	// default = true 
 	@Column(length = 20, nullable = false)
 	private boolean active;
 

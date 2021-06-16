@@ -34,9 +34,9 @@ public class Reply {
 
 	@Column(length = 20, nullable = false)
 	private String replier;
-	@Column(nullable = false)
+	@Column(columnDefinition = "text", nullable = false)
 	private String body;
-	@Column(length = 20, nullable = false)
+	@Column(nullable = false)
 	private String reply_privacy;
 
 	@ManyToOne(fetch = FetchType.LAZY)
