@@ -10,8 +10,8 @@ import org.springframework.transaction.annotation.Transactional;
 import com.yhdc.cedenti.dto.BoardDTO;
 import com.yhdc.cedenti.dto.PageRequestDTO;
 import com.yhdc.cedenti.dto.PageResultDTO;
-import com.yhdc.cedenti.entity.Board;
-import com.yhdc.cedenti.entity.Member;
+import com.yhdc.cedenti.model.Board;
+import com.yhdc.cedenti.model.Member;
 import com.yhdc.cedenti.repository.BoardRepository;
 import com.yhdc.cedenti.repository.ReplyRepository;
 
@@ -35,7 +35,7 @@ public class BoardServiceImplement implements BoardService {
 		return board.getBoard_id();
 	}
 
-	// Get Board Pages
+	// Get Board Pages = Forms PageResultDTO by using entityToDTO
 	@Override
 	public PageResultDTO<BoardDTO, Object[]> getList(PageRequestDTO pageRequestDTO) {
 
@@ -67,17 +67,17 @@ public class BoardServiceImplement implements BoardService {
 		replyRepository.deleteByBoardId(board_id);
 		boardRepository.deleteById(board_id);
 	}
-	
+
 	// Modify Board
 	@Transactional
 	@Override
 	public void modify(BoardDTO boardDTO) {
-		
+
 		Board board = boardRepository.getById(boardDTO.getBoard_id());
-		
+
 		board.changeTitle(boardDTO.getTitle());
 		board.changeBody(boardDTO.getBody());
-		
+
 		boardRepository.save(board);
 	}
 }

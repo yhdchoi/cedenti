@@ -1,4 +1,4 @@
-package com.yhdc.cedenti.entity;
+package com.yhdc.cedenti.model;
 
 import java.time.LocalDateTime;
 
@@ -17,6 +17,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 import lombok.ToString;
 
 @Entity
@@ -24,33 +25,25 @@ import lombok.ToString;
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
-@ToString(exclude = "writer")
-public class Board {
+@Setter
+@ToString(exclude = "board")
+public class Reply {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long board_id;
+	private Long reply_id;
 
-	@Column(length = 50, nullable = false)
-	private String title;
+	@Column(length = 20, nullable = false)
+	private String replier;
 	@Column(columnDefinition = "text", nullable = false)
 	private String body;
-	@Column(length = 10, nullable = false)
-	private String board_privacy;
+	@Column(nullable = false)
+	private String reply_privacy;
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	private Member writer;
-
+	private Board board;
+	
 	@CreationTimestamp
 	private LocalDateTime created;
 	@UpdateTimestamp
 	private LocalDateTime updated;
-
-	public void changeTitle(String title) {
-		this.title = title;
-	}
-
-	public void changeBody(String body) {
-		this.body = body;
-	}
-
 }

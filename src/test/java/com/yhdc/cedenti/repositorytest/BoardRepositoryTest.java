@@ -14,8 +14,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.yhdc.cedenti.entity.Board;
-import com.yhdc.cedenti.entity.Member;
+import com.yhdc.cedenti.model.Board;
+import com.yhdc.cedenti.model.Member;
 import com.yhdc.cedenti.repository.BoardRepository;
 
 @SpringBootTest

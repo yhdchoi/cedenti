@@ -4,6 +4,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -22,6 +23,7 @@ public class BoardController {
 
 	private final BoardService boardService;
 	
+	//LIST
 	@GetMapping("/list")
 	public void list(PageRequestDTO pageRequestDTO, Model model) {
 		
@@ -30,13 +32,13 @@ public class BoardController {
 		model.addAttribute("result", boardService.getList(pageRequestDTO));
 	}
 	
-	
-//	@GetMapping("/register")
-//	public void register() {
-//		log.info("register get...");
-//	}
-	
+	// REGISTER
 	@GetMapping("/register")
+	public void register() {
+		log.info("register get ...");
+	}	
+	
+	@PostMapping("/register")
 	public String registerPost(BoardDTO dto, RedirectAttributes redirectAttributes) {
 		
 		log.info("dto..." + dto);
@@ -50,7 +52,7 @@ public class BoardController {
 		return "redirect:/board/list";
 	}
 	
-	
+	// GET BY BOARDID
 	@GetMapping("/read")
 	public void read(@ModelAttribute("requestDTO") PageRequestDTO pageRequestDTO, Long board_id, Model model) {
 		

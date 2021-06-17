@@ -13,29 +13,29 @@
       <div class="collapse navbar-collapse" id="navbarCollapse">
         <ul class="navbar-nav me-auto mb-2 mb-md-0">
           <li class="nav-item">
-            <a class="nav-link" aria-current="page" th:href="@{/}">홈</a>
+            <a class="nav-link" aria-current="page" th:href="@{/}"> 홈 </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" th:href="@{/common/book}">예약</a>
+            <a class="nav-link" th:href="@{/common/book}"> 씨터 예약하기 </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" th:href="@{/board/browse}">둘러보기</a>
+            <a class="nav-link" th:href="@{/board/browse}"> 개시판 </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" th:href="@{/contact}"> Contact </a>
+            <a class="nav-link" th:href="@{/board/compose}"> 글쓰기 </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" th:href="@{/board/list}"> List </a>
+            <a class="nav-link" th:href="@{/contact}"> 고객샌터 </a>
           </li>
         </ul>
 
         <!-- When NO user is logged in! -->
         <div class="text-end">
           <a th:href="@{/security/login}">
-            <button type="button" class="btn btn-outline-danger me-2">로그인</button>
+            <button type="button" class="btn btn-outline-danger me-2"> 로그인 </button>
             </a>
             <a th:href="@{/security/signup}">
-              <button type="button" class="btn btn-outline-warning me-2">회원가입</button>
+              <button type="button" class="btn btn-outline-warning me-2"> 회원가입 </button>
             </a>
         </div>
 
@@ -51,13 +51,13 @@
           <ul class="dropdown-menu dropdown-menu-end dropdown-menu-dark text-small shadow"
             aria-labelledby="dropdownUser">
             <li>
-              <a class="dropdown-item" th:href="@{/user/profile}"> My PETs</a>
+              <a class="dropdown-item" th:href="@{/user/profile}"> 마이 펫 </a>
             </li>
             <li>
-              <a class="dropdown-item" th:href="@{/user/dashboard}">대쉬보드</a>
+              <a class="dropdown-item" th:href="@{/user/dashboard}"> 대쉬보드 </a>
             </li>
             <li>
-              <a class="dropdown-item" th:href="@{/user/settings}">설정</a>
+              <a class="dropdown-item" th:href="@{/user/settings}"> 설정 </a>
             </li>
             <li>
               <hr class="dropdown-divider">

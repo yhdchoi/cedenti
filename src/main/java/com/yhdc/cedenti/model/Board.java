@@ -1,12 +1,14 @@
-package com.yhdc.cedenti.entity;
+package com.yhdc.cedenti.model;
 
 import java.time.LocalDateTime;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
@@ -22,43 +24,33 @@ import lombok.ToString;
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
-@ToString
-public class Member {
-
+@ToString(exclude = "writer")
+public class Board {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(updatable = false)
-	private Long member_id;
+	private Long board_id;
 
-	@Column(length = 20, nullable = false)
-	private String password;
-	@Column(length = 20, nullable = false)
-	private String email;
-	
-	@Column(length = 20, nullable = false)
-	private String username;
-	@Column(length = 20, nullable = false)
-	private String lastname;
-	@Column(length = 20, nullable = false)
-	private String firstname;
-	
-	@Column(length = 20, nullable = false)
-	private String phone;
+	@Column(length = 50, nullable = false)
+	private String title;
 	@Column(columnDefinition = "text", nullable = false)
-	private String address;
-	
-	// member or sitter
+	private String body;
 	@Column(length = 10, nullable = false)
-	private String role;
-	// admin or manager or user
-	@Column(length = 20, nullable = false)
-	private String authority;
-	// default = true 
-	@Column(length = 20, nullable = false)
-	private boolean active;
+	private String board_privacy;
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	private Member writer;
 
 	@CreationTimestamp
 	private LocalDateTime created;
 	@UpdateTimestamp
 	private LocalDateTime updated;
+
+	public void changeTitle(String title) {
+		this.title = title;
+	}
+
+	public void changeBody(String body) {
+		this.body = body;
+	}
+
 }

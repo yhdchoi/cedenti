@@ -5,7 +5,7 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
-import com.yhdc.cedenti.entity.Reply;
+import com.yhdc.cedenti.model.Reply;
 
 public interface ReplyRepository extends JpaRepository<Reply, Long>{
 

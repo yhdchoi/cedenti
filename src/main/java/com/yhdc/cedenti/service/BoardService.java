@@ -3,8 +3,8 @@ package com.yhdc.cedenti.service;
 import com.yhdc.cedenti.dto.BoardDTO;
 import com.yhdc.cedenti.dto.PageRequestDTO;
 import com.yhdc.cedenti.dto.PageResultDTO;
-import com.yhdc.cedenti.entity.Board;
-import com.yhdc.cedenti.entity.Member;
+import com.yhdc.cedenti.model.Board;
+import com.yhdc.cedenti.model.Member;
 
 public interface BoardService {
 

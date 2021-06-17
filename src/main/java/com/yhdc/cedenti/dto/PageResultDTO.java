@@ -30,6 +30,7 @@ public class PageResultDTO<DTO, EN> {
 	// Page Number List
 	private List<Integer> pageList;
 
+	// Converts Object from JPQL into DTO
 	public PageResultDTO(Page<EN> result, Function<EN, DTO> fn) {
 
 		dtoList = result.stream().map(fn).collect(Collectors.toList());
@@ -39,6 +40,7 @@ public class PageResultDTO<DTO, EN> {
 		makePageList(result.getPageable());
 	}
 
+	// Returns 10 Boards per Page
 	private void makePageList(Pageable pageable) {
 		
 		// Starts from 0 so add 1

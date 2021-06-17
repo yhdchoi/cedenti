@@ -8,22 +8,24 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
-import com.yhdc.cedenti.entity.Board;
+import com.yhdc.cedenti.model.Board;
 
-public interface BoardRepository extends JpaRepository<Board, Long>{
-	
+public interface BoardRepository extends JpaRepository<Board, Long> {
+
+	// Board with Writer
 	@Query("SELECT b, w FROM Board b LEFT JOIN b.writer w WHERE b.board_id = :board_id")
 	Object getBoardWithWriter(@Param("board_id") Long board_id);
-	
+
+	// Board with Reply
 	@Query("SELECT b, r FROM Board b LEFT JOIN Reply r ON r.board = b WHERE b.board_id = :board_id")
 	List<Object[]> getBoardWithReply(@Param("board_id") Long board_id);
-	
-	@Query(value = "SELECT b, w, count(r) FROM Board b LEFT JOIN b.writer w LEFT JOIN Reply r ON r.board = b GROUP BY b", 
-			countQuery = "SELECT count(b) FROM Board b")	
+
+	// Board with ReplyCount
+	@Query(value = "SELECT b, w, count(r) FROM Board b LEFT JOIN b.writer w LEFT JOIN Reply r ON r.board = b GROUP BY b", countQuery = "SELECT count(b) FROM Board b")
 	Page<Object[]> getBoardWithReplyCount(Pageable pageable);
-	
+
+	// Get with BoardID
 	@Query("SELECT b, w, count(r) FROM Board b LEFT JOIN b.writer w LEFT OUTER JOIN Reply r ON r.board = b WHERE b.board_id = :board_id")
 	Object getBoardById(@Param("board_id") Long Board_id);
-	
-	
+
 }
