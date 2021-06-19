@@ -13,6 +13,8 @@ import javax.persistence.ManyToOne;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -42,8 +44,11 @@ public class Reply {
 	@ManyToOne(fetch = FetchType.LAZY)
 	private Board board;
 	
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyy-MM-dd HH:mm")
 	@CreationTimestamp
 	private LocalDateTime created;
+	
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyy-MM-dd HH:mm")
 	@UpdateTimestamp
 	private LocalDateTime updated;
 }

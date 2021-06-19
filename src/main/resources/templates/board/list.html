@@ -6,15 +6,13 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<title>개시판</title>
+<title>게시판</title>
 
 <!-- Bootstrap CSS -->
 <link th:href="@{https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css}"
   rel="stylesheet"
   integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x"
   crossorigin="anonymous">
-
-<link th:href="@{style.css}" rel="stylesheet">
 
 <!-- Option 1: Bootstrap Bundle with Popper -->
 <script th:src="@{https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js}"
@@ -24,54 +22,73 @@
 </script>
 </head>
 
-
 <body>
   <div th:replace="common/header :: header"></div>
+  <div class="container py-4">
+    <h1 class="text-align-center">게시판</h1>
 
-  <main>
-    <h1 class="mt-4">
-      게시물
-      <span>
-        <a th:href="@{/board/register}">
-          <button type="button" class="btn btn-outline-primary">게시물 쓰기</button>
-        </a>
-      </span>
-    </h1>
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th scope="col">ID#</th>
+          <th scope="col">제목</th>
+          <th scope="col">사용자</th>
+          <th scope="col">작성날자</th>
+        </tr>
+      </thead>
 
-    <div class="album py-5 bg-light">
-      <div class="container">
-        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+      <tbody>
+        <tr th:each="dto : ${result.dtoList}">
+          <th scope="row">
+            <a
+              th:href="@{/board/read(board_id=${dto.board_id}, 
+              page=${result.page}, 
+              type=${pageRequestDTO.type}, 
+              keyword=${pageRequestDTO.keyword})}">
+              [[${dto.board_id}]] </a>
+          </th>
 
-          <div class="col">
-            <div class="card shadow-sm">
+          <td>[[${dto.title}]]----- [<b th:text="${dto.replyCount}"></b>]
+          </td>
 
-              <svg class="bd-placeholder-img card-img-top" width="100%" height="225"
-                xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail"
-                preserveAspectRatio="xMidYMid slice" focusable="false">
-                <rect width="100%" height="100%" fill="#55595c" />
-                <text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
+          <td>[[${dto.writerUsername}]]</td>
 
-              <div class="card-body">
-                <h5>Title</h5>
-                <p class="card-text">Body</p>
-                <div class="d-flex justify-content-between align-items-center">
-                  <div class="btn-group">
-                    <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                    <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                  </div>
-                </div>
-                <!-- card-body -->
-              </div>
+          <td>[[${#temporals.format(dto.created, 'yyy/MM/dd')}]]</td>
+        </tr>
+      </tbody>
+    </table>
 
-            </div>
-          </div>
+    <ul class="pagination h-100 justify-content-center aligh-items-center">
 
-        </div>
-      </div>
-      <!-- album -->
-    </div>
-  </main>
+      <li class="page-item " th:if="${result.prev}">
+        <a class="page-link"
+          th:href="@{/board/list(page=${result.start-1}, 
+          type=${pageRequestDTO.type}, 
+          keyword=${pageRequestDTO.keyword})}"
+          tabindex="-1">
+          이전</a>
+      </li>
 
+      <li th:class=" 'page-item' + ${result.page == page?'active':''}"
+        th:each="page:${result.pageList}">
+        <a class="page-link"
+          th:href="@{/board/list(page=${page}, 
+        type=${pageRequestDTO.type},
+        keyword=${pageRequestDTO.keyword})}">
+          [[${page}]] </a>
+      </li>
+      
+      <li class="page-item " th:if="${result.next}">
+        <a class="page-link"
+          th:href="@{/board/list(page=${result.end+1}, 
+          type=${pageRequestDTO.type}, 
+          keyword=${pageRequestDTO.keyword})}">
+          다음</a>
+      </li>
+
+    </ul>
+
+  </div>
   <div th:replace="common/footer :: footer"></div>
 </body>
 </html>

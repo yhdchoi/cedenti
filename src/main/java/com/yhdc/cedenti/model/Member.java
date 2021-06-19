@@ -11,6 +11,8 @@ import javax.persistence.Id;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -31,14 +33,14 @@ public class Member {
 	private Long member_id;
 
 	@Column(length = 20, nullable = false)
+	private String username;
+	@Column(length = 20, nullable = false)
 	private String password;
 	@Column(length = 20, nullable = false)
 	private String email;
 	
 	@Column(length = 20, nullable = false)
-	private String username;
-	@Column(length = 20, nullable = false)
-	private String lastname;
+	private String surname;
 	@Column(length = 20, nullable = false)
 	private String firstname;
 	
@@ -56,9 +58,12 @@ public class Member {
 	// default = true 
 	@Column(length = 20, nullable = false)
 	private boolean active;
-
+	
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyy-MM-dd HH:mm")
 	@CreationTimestamp
 	private LocalDateTime created;
+	
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyy-MM-dd HH:mm")
 	@UpdateTimestamp
 	private LocalDateTime updated;
 }

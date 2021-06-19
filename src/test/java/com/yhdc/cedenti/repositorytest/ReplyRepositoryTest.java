@@ -1,12 +1,10 @@
 package com.yhdc.cedenti.repositorytest;
 
-import java.util.Optional;
 import java.util.stream.IntStream;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.transaction.annotation.Transactional;
 
 import com.yhdc.cedenti.model.Board;
 import com.yhdc.cedenti.model.Reply;
@@ -34,14 +32,14 @@ public class ReplyRepositoryTest {
 		});
 	}
 	
-	@Transactional
-	@Test
-	public void readReply1() {
-		Optional<Reply> result = replyRepository.findById(36L);
-		
-		Reply reply = result.get();
-		
-		System.out.println(reply);
-		System.out.println(reply.getBoard());
-	}
+//	@Transactional
+//	@Test
+//	public void readReply1() {
+//		Optional<Reply> result = replyRepository.findById(36L);
+//		
+//		Reply reply = result.get();
+//		
+//		System.out.println(reply);
+//		System.out.println(reply.getBoard());
+//	}
 }

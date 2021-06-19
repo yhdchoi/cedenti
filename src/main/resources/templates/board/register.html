@@ -15,8 +15,6 @@
   integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x"
   crossorigin="anonymous">
 
-<link th:href="@{style.css}" rel="stylesheet">
-
 <!-- Option 1: Bootstrap Bundle with Popper -->
 <script th:src="@{https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js}"
   integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4"
@@ -28,22 +26,30 @@
 <body>
   <div th:replace="common/header :: header"></div>
 
-  <h1>글쓰기</h1>
-  <form action="#" th:action="@{/board/register}" th:object="${board}" method="post">
-    <p>
-      Title:
-      <input type="text" th:field="*{id}" />
-    </p>
-    <p>
-      Body:
-      <input type="text" th:field="*{body}" />
-    </p>
-    <p>
-      <input type="submit" value="Submit" />
-      <input type="reset" value="Reset" />
-    </p>
-  </form>
+  <div class="container">
+    <h1 class="my-4">글쓰기</h1>
 
+    <form action="@{/board/register}" th:method="post">
+      <div class="form-group mb-4">
+        <label> 제목 </label>
+        <input type="text" class="form-control" name="title" placeholder="제목을 입력해주세요." />
+      </div>
+
+      <div class="form-group mb-4">
+        <label> 내용 </label>
+        <textarea class="form-control" rows="5" name="body"></textarea>
+      </div>
+
+      <div class="form-group mb-4">
+        <label> 작성자 </label>
+        <input type="text" class="form-control" name="writerUsername" placeholder="작성자 이름을 입력해주세요." />
+      </div>
+
+      <button type="submit" class="btn btn-primary mt-4">작성 완료</button>
+      
+    </form>
+  </div>
+  
   <div th:replace="common/footer :: footer"></div>
 </body>
 </html>

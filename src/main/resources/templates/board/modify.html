@@ -1,0 +1,122 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<!-- Required meta tags -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>상세보기</title>
+
+<!-- Bootstrap CSS -->
+<link th:href="@{https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css}"
+  rel="stylesheet"
+  integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x"
+  crossorigin="anonymous">
+
+<!-- Option 1: Bootstrap Bundle with Popper -->
+<script th:src="@{https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js}"
+  integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4"
+  crossorigin="anonymous">
+	
+</script>
+</head>
+
+<body>
+  <div th:replace="common/header :: header"></div>
+
+  <div class="container py-4">
+
+    <form action="/board/modify" method="post">
+
+      <!-- Page Numbers -->
+      <input type="hidden" name="page" th:value="${requestDTO.page}" />
+      <input type="hidden" name="type" th:value="${requestDTO.type}" />
+      <input type="hidden" name="keyword" th:value="${requestDTO.keyword}" />
+
+      <div class="form-group">
+        <label>게시물 번호</label>
+        <input type="text" class="form-control" name="board_id" th:value="${dto.board_id}" readonly />
+      </div>
+
+      <div class="form-group">
+        <label>제목</label>
+        <input type="text" class="form-control" name="title" th:value="${dto.title}" />
+      </div>
+
+      <div class="form-group">
+        <label>내용</label>
+        <input type="text" class="form-control" name="body" th:value="${dto.body}" />
+      </div>
+
+      <div class="form-group">
+        <label>작성자</label>
+        <input type="text" class="form-control" name="writer" th:value="${dto.writer}" readonly />
+      </div>
+
+      <div class="form-group">
+        <label>작성날짜</label>
+        <input type="text" class="form-control"
+          th:value="${#temporals.format(dto.created, 'yyyy/MM/dd HH:mm')}" readonly />
+      </div>
+
+      <div class="form-group">
+        <label>수정날짜</label>
+        <input type="text" class="form-control"
+          th:value="${#temporals.format(dto.updated, 'yyyy/MM/dd HH:mm')}" readonly />
+      </div>
+
+    </form>
+
+    <button type="button" class="btn btn-primary modifyBtn">수정하기</button>
+
+    <button type="button" class="btn btn-info listBtn">게시물 목록</button>
+
+    <button type="button" class="btn btn-danger removeBtn">삭제하기</button>
+
+    <script th:inline="javascript">
+		var actionForm = $("form");
+		
+		$(".removeBtn").click(function(){
+			actionForm
+				.attr("action", "/board/remove")
+				.attr("method", "post");
+			
+			actionForm.submit();		
+		});
+	
+		$(".modifyBtn").click(function() {
+			if(!confirm("수정하시겠습니까?")) {
+				return;
+			}
+			
+			actionForm
+				.attr("action", "/board/modify")
+				.attr("method", "post")
+				.submit();		
+		});
+		
+		$(".listBtn").click(function() {
+			var pageInfo = $("input[name='page']");
+			var page = $("input[name='page']");
+			var type = $("input[name='type']");
+			var keyword = $("input[name='keyword']");
+			
+			actionFOrm.empty();
+			
+			actionForm.append(page);
+			actionForm.append(type);
+			actionForm.append(keyword);
+			
+			actionForm
+				.attr("action", "/board/list")
+				.attr("method", "get");
+			
+			actionForm.submit();
+		});		
+		
+		</script>
+
+  </div>
+  <div th:replace="common/footer :: footer"></div>
+</body>
+</html>

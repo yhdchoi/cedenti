@@ -1,18 +1,10 @@
 package com.yhdc.cedenti.repositorytest;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.Optional;
 import java.util.stream.IntStream;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
-import org.springframework.transaction.annotation.Transactional;
 
 import com.yhdc.cedenti.model.Board;
 import com.yhdc.cedenti.model.Member;
@@ -39,54 +31,54 @@ public class BoardRepositoryTest {
 		});
 	}
 	
-	@Transactional
-	@Test
-	public void testRead1() {
-		Optional<Board> result = boardRepository.findById(23L);
-		
-		Board board = result.get();
-		
-		System.out.println(board);
-		System.out.println(board.getWriter());
-	}
-	
-	@Test
-	public void testReadWithWriter() {
-		Object result = boardRepository.getBoardWithWriter(28L);
-		
-		Object[] arr = (Object[])result;
-		
-		System.out.println(Arrays.toString(arr));
-	}
-	
-	@Test
-	public void testGetBoardWithReply() {
-		List<Object[]> result =boardRepository.getBoardWithReply(16L);
-		
-		for (Object[] arr : result) {
-			System.out.println(Arrays.toString(arr));
-		}
-	}
-	
-	@Test
-	public void testWithReplyCount() {
-		Pageable pageable = PageRequest.of(0, 10, Sort.by("board_id").descending());
-		
-		Page<Object[]> result = boardRepository.getBoardWithReplyCount(pageable);
-		
-		result.get().forEach(row -> {
-			Object[] arr = (Object[])row;
-			System.out.println(Arrays.toString(arr));
-		});
-	}
-	
-	@Test
-	public void testRead3() {
-		Object result = boardRepository.getBoardById(28L);
-		
-		Object[] arr = (Object[])result;
-		
-		System.out.println(Arrays.toString(arr));
-	}
+//	@Transactional
+//	@Test
+//	public void testRead1() {
+//		Optional<Board> result = boardRepository.findById(23L);
+//		
+//		Board board = result.get();
+//		
+//		System.out.println(board);
+//		System.out.println(board.getWriter());
+//	}
+//	
+//	@Test
+//	public void testReadWithWriter() {
+//		Object result = boardRepository.getBoardWithWriter(28L);
+//		
+//		Object[] arr = (Object[])result;
+//		
+//		System.out.println(Arrays.toString(arr));
+//	}
+//	
+//	@Test
+//	public void testGetBoardWithReply() {
+//		List<Object[]> result =boardRepository.getBoardWithReply(16L);
+//		
+//		for (Object[] arr : result) {
+//			System.out.println(Arrays.toString(arr));
+//		}
+//	}
+//	
+//	@Test
+//	public void testWithReplyCount() {
+//		Pageable pageable = PageRequest.of(0, 10, Sort.by("board_id").descending());
+//		
+//		Page<Object[]> result = boardRepository.getBoardWithReplyCount(pageable);
+//		
+//		result.get().forEach(row -> {
+//			Object[] arr = (Object[])row;
+//			System.out.println(Arrays.toString(arr));
+//		});
+//	}
+//	
+//	@Test
+//	public void testRead3() {
+//		Object result = boardRepository.getBoardById(28L);
+//		
+//		Object[] arr = (Object[])result;
+//		
+//		System.out.println(Arrays.toString(arr));
+//	}
 	
 }
