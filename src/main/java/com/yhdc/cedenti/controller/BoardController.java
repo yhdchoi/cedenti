@@ -23,6 +23,7 @@ public class BoardController {
 
 	private final BoardService boardService;
 	
+	
 	//LIST
 	@GetMapping("/list")
 	public void list(PageRequestDTO pageRequestDTO, Model model) {
@@ -31,6 +32,7 @@ public class BoardController {
 		
 		model.addAttribute("result", boardService.getList(pageRequestDTO));
 	}
+	
 	
 	// REGISTER
 	@GetMapping("/register")
@@ -51,6 +53,7 @@ public class BoardController {
 		
 		return "redirect:/board/list";
 	}
+	
 	
 	// GET
 	@GetMapping({"/read", "/modify"})

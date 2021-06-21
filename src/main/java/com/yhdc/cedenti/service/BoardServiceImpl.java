@@ -21,7 +21,7 @@ import lombok.extern.log4j.Log4j2;
 @Service
 @RequiredArgsConstructor
 @Log4j2
-public class BoardServiceImplement implements BoardService {
+public class BoardServiceImpl implements BoardService {
 
 	private final BoardRepository boardRepository;
 	private final ReplyRepository replyRepository;
