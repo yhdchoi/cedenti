@@ -23,7 +23,6 @@ public class BoardController {
 
 	private final BoardService boardService;
 	
-	
 	//LIST
 	@GetMapping("/list")
 	public void list(PageRequestDTO pageRequestDTO, Model model) {
@@ -97,7 +96,6 @@ public class BoardController {
 		redirectAttributes.addAttribute("board_id", dto.getBoard_id());		
 		
 		return "redirect:/board/read";
-	}
-	
+	}	
 
 }

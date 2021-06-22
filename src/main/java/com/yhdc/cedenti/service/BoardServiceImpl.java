@@ -35,16 +35,21 @@ public class BoardServiceImpl implements BoardService {
 		return board.getBoard_id();
 	}
 
-	// Get Board Pages = Forms PageResultDTO by using entityToDTO
+	// Get Board Pages: forms PageResultDTO by using entityToDTO
 	@Override
 	public PageResultDTO<BoardDTO, Object[]> getList(PageRequestDTO pageRequestDTO) {
-
 		log.info(pageRequestDTO);
 
 		Function<Object[], BoardDTO> fn = (en -> entityToDTO((Board) en[0], (Member) en[1], (Long) en[2]));
 
-		Page<Object[]> result = boardRepository
-				.getBoardWithReplyCount(pageRequestDTO.getPageable(Sort.by("board_id").descending()));
+//		Page<Object[]> result = boardRepository
+//				.getBoardWithReplyCount(pageRequestDTO.getPageable(Sort.by("board_id").descending()));
+		
+		Page<Object[]> result = boardRepository.searchPage(
+				pageRequestDTO.getType(),
+				pageRequestDTO.getKeyword(),
+				pageRequestDTO.getPageable(Sort.by("board_id").descending())				
+				);
 
 		return new PageResultDTO<>(result, fn);
 	}
@@ -63,7 +68,6 @@ public class BoardServiceImpl implements BoardService {
 	@Transactional
 	@Override
 	public void removeWithReplies(Long board_id) {
-
 		replyRepository.deleteByBoardId(board_id);
 		boardRepository.deleteById(board_id);
 	}
@@ -72,7 +76,6 @@ public class BoardServiceImpl implements BoardService {
 	@Transactional
 	@Override
 	public void modify(BoardDTO boardDTO) {
-
 		Board board = boardRepository.getById(boardDTO.getBoard_id());
 
 		board.changeTitle(boardDTO.getTitle());

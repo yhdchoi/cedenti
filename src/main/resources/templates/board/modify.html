@@ -19,14 +19,15 @@
   crossorigin="anonymous">
 	
 </script>
+
+
 </head>
 
 <body>
   <div th:replace="common/header :: header"></div>
-
   <div class="container py-4">
 
-    <form action="/board/modify" method="post">
+    <form th:action="@{/board/modify}" th:method="post">
 
       <!-- Page Numbers -->
       <input type="hidden" name="page" th:value="${requestDTO.page}" />
@@ -50,7 +51,8 @@
 
       <div class="form-group">
         <label>작성자</label>
-        <input type="text" class="form-control" name="writer" th:value="${dto.writer}" readonly />
+        <input type="text" class="form-control" name="writer" th:value="${dto.writerUsername}"
+          readonly />
       </div>
 
       <div class="form-group">
@@ -74,47 +76,45 @@
     <button type="button" class="btn btn-danger removeBtn">삭제하기</button>
 
     <script th:inline="javascript">
-		var actionForm = $("form");
-		
-		$(".removeBtn").click(function(){
-			actionForm
-				.attr("action", "/board/remove")
-				.attr("method", "post");
-			
-			actionForm.submit();		
-		});
-	
-		$(".modifyBtn").click(function() {
-			if(!confirm("수정하시겠습니까?")) {
-				return;
-			}
-			
-			actionForm
-				.attr("action", "/board/modify")
-				.attr("method", "post")
-				.submit();		
-		});
-		
-		$(".listBtn").click(function() {
-			var pageInfo = $("input[name='page']");
-			var page = $("input[name='page']");
-			var type = $("input[name='type']");
-			var keyword = $("input[name='keyword']");
-			
-			actionFOrm.empty();
-			
-			actionForm.append(page);
-			actionForm.append(type);
-			actionForm.append(keyword);
-			
-			actionForm
-				.attr("action", "/board/list")
-				.attr("method", "get");
-			
-			actionForm.submit();
-		});		
-		
-		</script>
+					var actionForm = $("form");
+
+					$(".removeBtn").click(
+							function() {
+								actionForm.attr("action", "/board/remove")
+										.attr("method", "post");
+
+								actionForm.submit();
+							});
+
+					$(".modifyBtn").click(
+							function() {
+								if (!confirm("수정하시겠습니까?")) {
+									return;
+								}
+
+								actionForm.attr("action", "/board/modify")
+										.attr("method", "post").submit();
+							});
+
+					$(".listBtn").click(
+							function() {
+								// var pageInfo = $("input[name='page']");
+								var page = $("input[name='page']");
+								var type = $("input[name='type']");
+								var keyword = $("input[name='keyword']");
+
+								actionFOrm.empty();
+
+								actionForm.append(page);
+								actionForm.append(type);
+								actionForm.append(keyword);
+
+								actionForm.attr("action", "/board/list").attr(
+										"method", "get");
+
+								actionForm.submit();
+							});
+				</script>
 
   </div>
   <div th:replace="common/footer :: footer"></div>

@@ -60,7 +60,7 @@ public class SearchBoardRepositoryImpl extends QuerydslRepositorySupport impleme
 	
 	// SEARCH, SORT, COUNT
 	@Override
-	public Page<Object[]> searchPage(String type, String keyword, Pageable pageable) {
+	public Page<Object[]> searchPage(String type, String keyword, Pageable pageable) {		
 		log.info("searchPage.......................");
 		
 		QBoard board = QBoard.board;
@@ -90,11 +90,11 @@ public class SearchBoardRepositoryImpl extends QuerydslRepositorySupport impleme
 				case "t":
 					conditionBuilder.or(board.title.contains(keyword));
 					break;
-				case "w":
-					conditionBuilder.or(member.username.contains(keyword));
-					break;
 				case "b":
 					conditionBuilder.or(board.body.contains(keyword));
+					break;
+				case "w":
+					conditionBuilder.or(member.username.contains(keyword));
 					break;
 				}
 			}
@@ -109,7 +109,7 @@ public class SearchBoardRepositoryImpl extends QuerydslRepositorySupport impleme
 		//tuple.orderBy(board.board_id.desc());
 		
 		sort.stream().forEach(order -> {
-			Order direction = order.isAscending() ? Order.ASC : Order.DESC;
+			Order direction = order.isAscending()? Order.ASC: Order.DESC;
 			String prop = order.getProperty();
 			
 			PathBuilder orderByExpression = new PathBuilder(Board.class, "board");			
@@ -131,8 +131,7 @@ public class SearchBoardRepositoryImpl extends QuerydslRepositorySupport impleme
 		log.info("COUNT: " + count);
 		
 		return new PageImpl<Object[]>(
-				result.stream().map(t -> t.toArray()).collect(Collectors.toList()), pageable, count);
-		
+				result.stream().map(t -> t.toArray()).collect(Collectors.toList()), pageable, count);		
 	}
 	
 }
