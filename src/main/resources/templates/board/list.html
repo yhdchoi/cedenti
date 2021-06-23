@@ -14,42 +14,46 @@
   integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x"
   crossorigin="anonymous">
 
-<!-- Option 1: Bootstrap Bundle with Popper -->
+<!-- Option 1: Bootstrap Bundle with Popper   -->
 <script th:src="@{https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js}"
   integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4"
   crossorigin="anonymous">
 </script>
+
+
 </head>
 
 <body>
   <div th:replace="common/header :: header"></div>
-  
+
   <div class="container py-4">
     <h1>게시판</h1>
 
-    <form th:action="@{/board/list}" th:method="get" id="searchForm">
+    <form action="/board/list" method="get" id="searchForm">
       <div class="input-group">
-      
+
         <input type="hidden" name="page" value="1">
         <div class="input-group-prepend">
           <select class="form-select" name="type">
             <option th:selected="${pageRequestDTO.type == null}">선택</option>
-            <option th:value="t" th:selected="${pageRequestDTO.type == 't'}">제목</option>
-            <option th:value="b" th:selected="${pageRequestDTO.type == 'b'}">내용</option>
-            <option th:value="w" th:selected="${pageRequestDTO.type == 'w'}">작성자</option>
-            <option th:value="tb" th:selected="${pageRequestDTO.type == 'tb'}">제목 + 내용</option>
-            <option th:value="tbw" th:selected="${pageRequestDTO.type == 'tbw'}">제목 + 내용 + 작성자</option>
+            <option value="t" th:selected="${pageRequestDTO.type == 't'}">제목</option>
+            <option value="b" th:selected="${pageRequestDTO.type == 'b'}">내용</option>
+            <option value="w" th:selected="${pageRequestDTO.type == 'w'}">작성자</option>
+            <option value="tb" th:selected="${pageRequestDTO.type == 'tb'}">제목 + 내용</option>
+            <option value="tbw" th:selected="${pageRequestDTO.type == 'tbw'}">제목 + 내용 + 작성자</option>
           </select>
         </div>
-        
+
         <input class="form-control" name="keyword" th:value="${pageRequestDTO.keyword}">
         <div class="input-group-append" id="button-addon4">
-          <button class="btn btn-outline-secondary btn-search" type="button">검색</button>
-          <button class="btn btn-outline-secondary btn-clear" type="button">지우기</button>
+          <button class="btn btn-outline-secondary btn-search" type="button" th:onclick="submit([[${searchForm}]])">검색</button>
+          <button class="btn btn-outline-secondary btn-clear" type="button" th:onclick="location.href='/board/list'">다시하기</button>
         </div>
-        
+
       </div>
     </form>
+
+
 
     <table class="table table-hover">
       <thead>
@@ -64,14 +68,16 @@
       <tbody>
         <tr th:each="dto : ${result.dtoList}">
           <th scope="row">
-            <a th:href="@{/board/read(board_id=${dto.board_id}, 
+            <a
+              th:href="@{/board/read(board_id=${dto.board_id}, 
               page=${result.page}, 
               type=${pageRequestDTO.type}, 
               keyword=${pageRequestDTO.keyword})}">
               [[${dto.board_id}]] </a>
           </th>
 
-          <td>[[${dto.title}]]----- [<b th:text="${dto.replyCount}"></b>]</td>
+          <td>[[${dto.title}]]----- [<b th:text="${dto.replyCount}"></b>]
+          </td>
           <td>[[${dto.writerUsername}]]</td>
           <td>[[${#temporals.format(dto.created, 'yyyy/MM/dd')}]]</td>
         </tr>
@@ -105,5 +111,7 @@
 
   </div>
   <div th:replace="common/footer :: footer"></div>
+
+
 </body>
 </html>
