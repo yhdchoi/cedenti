@@ -30,7 +30,7 @@ public class Member {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(updatable = false)
-	private Long member_id;
+	private Long mno;
 
 	@Column(length = 20, nullable = false)
 	private String username;
@@ -56,7 +56,7 @@ public class Member {
 	@Column(length = 20, nullable = false)
 	private String authority;
 	// default = true 
-	@Column(length = 20, nullable = false)
+	@Column(nullable = false)
 	private boolean active;
 	
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyy-MM-dd HH:mm")

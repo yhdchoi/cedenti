@@ -32,14 +32,14 @@ import lombok.ToString;
 public class Reply {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long reply_id;
+	private Long rno;
 
 	@Column(length = 20, nullable = false)
 	private String replier;
 	@Column(columnDefinition = "text", nullable = false)
 	private String body;
 	@Column(nullable = false)
-	private String reply_privacy;
+	private boolean reply_privacy;
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	private Board board;

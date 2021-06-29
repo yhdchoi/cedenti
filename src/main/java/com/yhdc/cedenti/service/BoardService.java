@@ -13,10 +13,10 @@ public interface BoardService {
 	PageResultDTO<BoardDTO, Object[]> getList(PageRequestDTO pageRequestDTO);
 
 	// Get Board with BoardID
-	BoardDTO get(Long board_id);
+	BoardDTO get(Long bno);
 
 	// Delete Board with BoardID
-	void removeWithReplies(Long board_id);
+	void removeWithReplies(Long bno);
 	
 	// Modify Board
 	void modify(BoardDTO boardDTO);
@@ -24,10 +24,10 @@ public interface BoardService {
 	// Post Board
 	default Board dtoToEntity(BoardDTO dto) {
 
-		Member member = Member.builder().member_id(dto.getWriterId()).build();
+		Member member = Member.builder().mno(dto.getWriterId()).build();
 
-		Board board = Board.builder().board_id(dto.getBoard_id()).title(dto.getTitle()).body(dto.getBody())
-				.board_privacy(dto.getBoard_privacy()).writer(member).build();
+		Board board = Board.builder().bno(dto.getBno()).title(dto.getTitle()).body(dto.getBody())
+				.board_privacy(dto.isBoard_privacy()).writer(member).build();
 
 		return board;
 	}
@@ -35,8 +35,8 @@ public interface BoardService {
 	// List Board
 	default BoardDTO entityToDTO(Board board, Member member, Long replyCount) {
 
-		BoardDTO boardDTO = BoardDTO.builder().board_id(board.getBoard_id()).title(board.getTitle())
-				.body(board.getBody()).board_privacy(board.getBoard_privacy()).writerId(member.getMember_id())
+		BoardDTO boardDTO = BoardDTO.builder().bno(board.getBno()).title(board.getTitle())
+				.body(board.getBody()).board_privacy(board.isBoard_privacy()).writerId(member.getMno())
 				.writerUsername(member.getUsername()).created(board.getCreated()).updated(board.getUpdated())
 				.replyCount(replyCount.intValue()).build();
 

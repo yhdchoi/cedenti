@@ -33,23 +33,23 @@ public class BoardServiceTest {
 //
 	@Test
 	public void testGet() {
-		Long board_id = 41L;
+		Long bno = 41L;
 
-		BoardDTO boardDTO = boardService.get(board_id);
+		BoardDTO boardDTO = boardService.get(bno);
 
 		System.out.println(boardDTO);
 	}
 //
 //	@Test
 //	public void testRemove() {
-//		Long board_id = 1L;
+//		Long bno = 1L;
 //
-//		boardService.removeWithReplies(board_id);
+//		boardService.removeWithReplies(bno);
 //	}
 //	
 //	@Test
 //	public void testModify() {
-//		BoardDTO boardDTO = BoardDTO.builder().board_id(2L).title("New Title").body("New Body").build();
+//		BoardDTO boardDTO = BoardDTO.builder().bno(2L).title("New Title").body("New Body").build();
 //		
 //		boardService.modify(boardDTO);
 //	}

@@ -43,7 +43,7 @@ public class SearchBoardRepositoryImpl extends QuerydslRepositorySupport impleme
 		jpqlQuery.leftJoin(member).on(board.writer.eq(member));
 		jpqlQuery.leftJoin(reply).on(reply.board.eq(board));
 
-		JPQLQuery<Tuple> tuple = jpqlQuery.select(board, member.member_id, reply.count());
+		JPQLQuery<Tuple> tuple = jpqlQuery.select(board, member.mno, reply.count());
 		tuple.groupBy(board);
 
 		log.info("---------------------------------");
@@ -76,7 +76,7 @@ public class SearchBoardRepositoryImpl extends QuerydslRepositorySupport impleme
 		JPQLQuery<Tuple> tuple = jpqlQuery.select(board, member, reply.count());
 
 		BooleanBuilder booleanBuilder = new BooleanBuilder();
-		BooleanExpression expression = board.board_id.gt(0L);
+		BooleanExpression expression = board.bno.gt(0L);
 		
 		booleanBuilder.and(expression);
 		
@@ -106,7 +106,7 @@ public class SearchBoardRepositoryImpl extends QuerydslRepositorySupport impleme
 		// OrderBy
 		Sort sort = pageable.getSort();
 		
-		//tuple.orderBy(board.board_id.desc());
+		//tuple.orderBy(board.bno.desc());
 		
 		sort.stream().forEach(order -> {
 			Order direction = order.isAscending()? Order.ASC: Order.DESC;

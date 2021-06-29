@@ -6,25 +6,20 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.ToString;
 
-@Data
-@ToString
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class BoardDTO {
+@Data
+public class ReplyDTO {
 
-	private Long bno;
-	private String title;
+	private Long rno;
+	private String replier;
 	private String body;
-	private boolean board_privacy;
+	private boolean reply_privacy;
 	
-	private Long writerId;
-	private String writerUsername;
+	private Long bno;
 	
 	private LocalDateTime created;
 	private LocalDateTime updated;
-	
-	private int replyCount;	
 }

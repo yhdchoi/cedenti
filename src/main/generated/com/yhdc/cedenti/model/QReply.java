@@ -30,7 +30,7 @@ public class QReply extends EntityPathBase<Reply> {
 
     public final StringPath replier = createString("replier");
 
-    public final NumberPath<Long> reply_id = createNumber("reply_id", Long.class);
+    public final NumberPath<Long> rno = createNumber("rno", Long.class);
 
     public final StringPath reply_privacy = createString("reply_privacy");
 

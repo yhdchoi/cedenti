@@ -44,11 +44,11 @@ public class BoardController {
 		
 		log.info("dto..." + dto);
 		
-		Long board_id = boardService.register(dto);
+		Long bno = boardService.register(dto);
 		
-		log.info("BoardID..." + board_id);
+		log.info("BoardID..." + bno);
 		
-		redirectAttributes.addFlashAttribute("msg", board_id);
+		redirectAttributes.addFlashAttribute("msg", bno);
 		
 		return "redirect:/board/list";
 	}
@@ -56,11 +56,11 @@ public class BoardController {
 	
 	// GET
 	@GetMapping({"/read", "/modify"})
-	public void read(@ModelAttribute("requestDTO") PageRequestDTO pageRequestDTO, Long board_id, Model model) {
+	public void read(@ModelAttribute("requestDTO") PageRequestDTO pageRequestDTO, Long bno, Model model) {
 		
-		log.info("board_id : " +board_id);
+		log.info("bno : " +bno);
 		
-		BoardDTO boardDTO = boardService.get(board_id);
+		BoardDTO boardDTO = boardService.get(bno);
 		
 		log.info(boardDTO); 
 		
@@ -70,12 +70,12 @@ public class BoardController {
 	
 	// DELETE
 	@PostMapping("/remove")
-	public String remove(Long board_id, RedirectAttributes redirectAttributes) {
-		log.info("board_id: " + board_id);
+	public String remove(Long bno, RedirectAttributes redirectAttributes) {
+		log.info("bno: " + bno);
 		
-		boardService.removeWithReplies(board_id);
+		boardService.removeWithReplies(bno);
 		
-		redirectAttributes.addFlashAttribute("msg", board_id);
+		redirectAttributes.addFlashAttribute("msg", bno);
 		
 		return "redirect:/board/list";
 	}
@@ -93,7 +93,7 @@ public class BoardController {
 		redirectAttributes.addAttribute("type", requestDTO.getType());
 		redirectAttributes.addAttribute("keyword", requestDTO.getKeyword());
 		
-		redirectAttributes.addAttribute("board_id", dto.getBoard_id());		
+		redirectAttributes.addAttribute("bno", dto.getBno());		
 		
 		return "redirect:/board/read";
 	}	

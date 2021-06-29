@@ -30,14 +30,14 @@ import lombok.ToString;
 public class Board {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long board_id;
+	private Long bno;
 
 	@Column(length = 50, nullable = false)
 	private String title;
 	@Column(columnDefinition = "text", nullable = false)
 	private String body;
-	@Column(length = 10, nullable = false)
-	private String board_privacy;
+	@Column(nullable = false)
+	private boolean board_privacy;
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	private Member writer;

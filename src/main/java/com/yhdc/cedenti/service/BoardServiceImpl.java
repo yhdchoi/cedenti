@@ -32,7 +32,7 @@ public class BoardServiceImpl implements BoardService {
 		log.info(dto);
 		Board board = dtoToEntity(dto);
 		boardRepository.save(board);
-		return board.getBoard_id();
+		return board.getBno();
 	}
 
 	// Get Board Pages: forms PageResultDTO by using entityToDTO
@@ -43,12 +43,12 @@ public class BoardServiceImpl implements BoardService {
 		Function<Object[], BoardDTO> fn = (en -> entityToDTO((Board) en[0], (Member) en[1], (Long) en[2]));
 
 //		Page<Object[]> result = boardRepository
-//				.getBoardWithReplyCount(pageRequestDTO.getPageable(Sort.by("board_id").descending()));
+//				.getBoardWithReplyCount(pageRequestDTO.getPageable(Sort.by("bno").descending()));
 		
 		Page<Object[]> result = boardRepository.searchPage(
 				pageRequestDTO.getType(),
 				pageRequestDTO.getKeyword(),
-				pageRequestDTO.getPageable(Sort.by("board_id").descending())				
+				pageRequestDTO.getPageable(Sort.by("bno").descending())				
 				);
 
 		return new PageResultDTO<>(result, fn);
@@ -56,8 +56,8 @@ public class BoardServiceImpl implements BoardService {
 
 	// Get Board with BoardID
 	@Override
-	public BoardDTO get(Long board_id) {
-		Object result = boardRepository.getBoardById(board_id);
+	public BoardDTO get(Long bno) {
+		Object result = boardRepository.getBoardById(bno);
 
 		Object[] arr = (Object[]) result;
 
@@ -67,16 +67,16 @@ public class BoardServiceImpl implements BoardService {
 	// Delete Board
 	@Transactional
 	@Override
-	public void removeWithReplies(Long board_id) {
-		replyRepository.deleteByBoardId(board_id);
-		boardRepository.deleteById(board_id);
+	public void removeWithReplies(Long bno) {
+		replyRepository.deleteByBoardId(bno);
+		boardRepository.deleteById(bno);
 	}
 
 	// Modify Board
 	@Transactional
 	@Override
 	public void modify(BoardDTO boardDTO) {
-		Board board = boardRepository.getById(boardDTO.getBoard_id());
+		Board board = boardRepository.getById(boardDTO.getBno());
 
 		board.changeTitle(boardDTO.getTitle());
 		board.changeBody(boardDTO.getBody());
